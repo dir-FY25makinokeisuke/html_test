@@ -95,11 +95,9 @@
       height: 100dvh;
     }
     .article {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: clamp(16px, 2.5vw, 28px);
-      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 48px 64px;
       min-height: 60vh;
     }
     .article h1 {
@@ -113,17 +111,14 @@
       margin-bottom: 16px;
     }
     .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 16px 0 24px;
-      border: 0;
+      display: none;
     }
 
     /* Markdown レンダリングスタイル */
     .markdown-body h1 {
       font-size: 28px;
       color: var(--primary);
-      border-bottom: 3px solid var(--accent);
+      border-bottom: 3px solid #333;
       padding-bottom: 12px;
       margin-bottom: 24px;
     }
@@ -134,7 +129,7 @@
       margin-top: 36px;
       margin-bottom: 16px;
       padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid #333;
     }
 
     .markdown-body h3 {
@@ -290,6 +285,9 @@
       .toc-link { justify-content: flex-start; }
       .content {
         height: auto;
+      }
+      .article {
+        padding: 32px 20px 48px;
       }
     }
 
