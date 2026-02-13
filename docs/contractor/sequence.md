@@ -6,44 +6,37 @@
 
 ## 契約者情報取得シーケンス
 
-```
-ブラウザ          フロントエンド        APIサーバー         データベース
-  |                   |                   |                   |
-  |  画面アクセス      |                   |                   |
-  |------------------>|                   |                   |
-  |                   |  GET /api/contractor/{id}              |
-  |                   |------------------>|                   |
-  |                   |                   |  SELECT契約者情報   |
-  |                   |                   |------------------>|
-  |                   |                   |  契約者情報返却     |
-  |                   |                   |<------------------|
-  |                   |  200 OK (JSON)    |                   |
-  |                   |<------------------|                   |
-  |  画面表示          |                   |                   |
-  |<------------------|                   |                   |
+```mermaid
+sequenceDiagram
+    participant Browser as ブラウザ
+    participant Frontend as フロントエンド
+    participant API as APIサーバー
+    participant DB as データベース
+    
+    Browser->>Frontend: 画面アクセス
+    Frontend->>API: GET /api/contractor/{id}
+    API->>DB: SELECT契約者情報
+    DB-->>API: 契約者情報返却
+    API-->>Frontend: 200 OK (JSON)
+    Frontend-->>Browser: 画面表示
 ```
 
 ## 契約者情報更新シーケンス
 
-```
-ブラウザ          フロントエンド        APIサーバー         データベース
-  |                   |                   |                   |
-  |  更新ボタン押下    |                   |                   |
-  |------------------>|                   |                   |
-  |                   |  バリデーション     |                   |
-  |                   |------+            |                   |
-  |                   |      |            |                   |
-  |                   |<-----+            |                   |
-  |                   |  PUT /api/contractor/{id}              |
-  |                   |------------------>|                   |
-  |                   |                   |  UPDATE契約者情報   |
-  |                   |                   |------------------>|
-  |                   |                   |  更新結果返却       |
-  |                   |                   |<------------------|
-  |                   |  200 OK           |                   |
-  |                   |<------------------|                   |
-  |  完了メッセージ    |                   |                   |
-  |<------------------|                   |                   |
+```mermaid
+sequenceDiagram
+    participant Browser as ブラウザ
+    participant Frontend as フロントエンド
+    participant API as APIサーバー
+    participant DB as データベース
+    
+    Browser->>Frontend: 更新ボタン押下
+    Frontend->>Frontend: バリデーション
+    Frontend->>API: PUT /api/contractor/{id}
+    API->>DB: UPDATE契約者情報
+    DB-->>API: 更新結果返却
+    API-->>Frontend: 200 OK
+    Frontend-->>Browser: 完了メッセージ
 ```
 
 ## 補足事項
